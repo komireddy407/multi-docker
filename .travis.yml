@@ -2,19 +2,19 @@ sudo: required
 services:
     - docker
 before_install:
-    - docker build -t chandu/react-test -f ./client/Dockerfile.dev ./client
+    - docker build -t komireddychandureddy/react-test -f ./client/Dockerfile.dev ./client
 script:
-    - docker run chandu/react-test npm test -- --coverage
+    - docker run komireddychandureddy/react-test npm test -- --coverage
 
 after_success:
-    - docker build -t chandu/multi-client ./client
-    - docker build -t chandu/multi-nginx ./nginx
-    - docker build -t chandu/multi-worker ./worker
-    - docker build -t chandu/multi-server ./server
+    - docker build -t komireddychandureddy/multi-client ./client
+    - docker build -t komireddychandureddy/multi-nginx ./nginx
+    - docker build -t komireddychandureddy/multi-worker ./worker
+    - docker build -t komireddychandureddy/multi-server ./server
     # Log in to docker CLI
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     # Take those images and push them to docker hub
-    - docker push chandu/multi-client
-    - docker push chandu/multi-nginx
-    - docker push chandu/multi-worker
-    - docker push chandu/multi-server
+    - docker push komireddychandureddy/multi-client
+    - docker push komireddychandureddy/multi-nginx
+    - docker push komireddychandureddy/multi-worker
+    - docker push komireddychandureddy/multi-server
