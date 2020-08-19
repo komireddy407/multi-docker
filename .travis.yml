@@ -4,7 +4,7 @@ services:
 before_install:
     - docker build -t chandu/react-test -f ./client/Dockerfile.dev ./client
 script:
-    - docker run chandu/react-test npm test
+    - docker run chandu/react-test npm test -- --coverage
 
 after_success:
     - docker build -t chandu/multi-client ./client
