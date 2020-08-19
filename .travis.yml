@@ -12,7 +12,7 @@ after_success:
     - docker build -t chandu/multi-worker ./worker
     - docker build -t chandu/multi-server ./server
     # Log in to docker CLI
-    - echo "$DOCKE_PASSWORD" | docker login -u "$Docker_ID" --password-stdin
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     # Take those images and push them to docker hub
     - docker push chandu/multi-client
     - docker push chandu/multi-nginx
