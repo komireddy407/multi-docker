@@ -1,0 +1,20 @@
+sudo: required
+services:
+    - docker
+before_install:
+    - docker build -t chandu/react-test -f ./client/Dockerfile.dev ./client
+script:
+    - docker run chandu/react-test npm test
+
+after_success:
+    - docker build -t chandu/multi-client ./client
+    - docker build -t chandu/multi-nginx ./nginx
+    - docker build -t chandu/multi-worker ./worker
+    - docker build -t chandu/multi-server ./server
+    # Log in to docker CLI
+    - echo "$DOCKE_PASSWORD" | docker login -u "$Docker_ID" --password-stdin
+    # Take those images and push them to docker hub
+    - docker push chandu/multi-client
+    - docker push chandu/multi-nginx
+    - docker push chandu/multi-worker
+    - docker push chandu/multi-server
