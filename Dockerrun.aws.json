@@ -34,7 +34,7 @@
                 }
                 
             ],
-            "links": ["client", "sserver"],
+            "links": ["client", "server"],
             "memory": 128
         }
         
